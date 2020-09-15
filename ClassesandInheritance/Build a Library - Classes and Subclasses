@@ -1,0 +1,156 @@
+class Media {
+  constructor(title,isCheckedOut,ratings){
+    this._title = title;
+    this._isCheckedOut = false;
+    ratings : [0]
+    }
+
+  /*creating getters*/
+
+  get title(){
+    return this._title
+  }
+  get isCheckedOut(){
+    return this._isCheckedOut
+  }
+  get ratings(){
+    return this._ratings
+  }
+  getAverageRating(ratings){
+    let tot_rating = 0
+    let avg_rating = 0 
+    let counter = 0  
+    for (const i of ratings){
+      tot_rating += i
+      counter++
+    }
+    return avg_rating = tot_rating / counter
+  //  return tot_rating
+  }
+
+  /*When called, if it's verified, return the string*/
+
+  toggleCheckOutStatus(isCheckedOut){
+    if(isCheckedOut){
+      return `the selected media is available`
+    }
+    else{
+      return `the selected media is not available`
+    }
+  }
+
+  /*addRating adds a new rating to the ratings array*/
+
+  addRating(number){
+    this._ratings.push(number)
+  }
+}
+
+/*Book child class inherits methods and properties from Media*/
+
+class Book extends Media{
+  constructor(title,isCheckedOut,ratings,author,pages){
+      super(title);
+      this._author = author;
+      this._pages = pages;
+      this._isCheckedOut = isCheckedOut;
+      this._ratings = ratings;
+  }
+  get author(){
+    return this._author
+  }
+  get pages(){
+    return this._pages
+  }
+}
+
+const WarandPeace = new Book('WarAndPeace',true, [9,10,10],'Tolstoj',1550)
+console.log(WarandPeace)
+
+/*printout Book {
+  _title: 'WarAndPeace',
+  _isCheckedOut: false,
+  _ratings: undefined,
+  _author: 'Tolstoj',
+  _pages: 1550 }*/
+
+
+/*Movie child class inherits methods and properties from Media*/
+
+class Movie extends Media{
+  constructor(title, isCheckedOut, ratings, director,runTime){
+      super(title);
+      this._director = director;
+      this._runTime = runTime;
+      this._isCheckedOut = isCheckedOut;
+      this._ratings = ratings;
+  }
+  get director(){
+    return this._director
+  }
+  get runTime(){
+    return this._runTime
+  }
+}
+
+
+
+const Interstellar = new Movie('Interstellar',true,'Christopher Nolan',180,[9,9,9])
+console.log(Interstellar)
+
+/*printout Movie {
+  _title: 'Interstellar',
+  _isCheckedOut: true,
+  _director: 180,
+  _runTime: [ 9, 9, 9 ],
+  _ratings: 'Christopher Nolan' }*/
+
+/*CD child class inherits methods and properties from Media*/
+
+class CD extends Media{
+  constructor(title,isCheckedOut, ratings, artist,songs){
+      super(title);
+      this._artist = artist;
+      this._songs = songs;
+      this._isCheckedOut = isCheckedOut;
+      this._ratings = ratings;
+  }
+  get artist(){
+    return this._artist
+  }
+  get songs(){
+    return this._songs
+  }
+}
+
+/**TESTING**/
+
+const TheDarkSideOfTheMoon = new CD('TheDarkSideOfTheMoon',true, [9,8,9], 'Pink Floyd','lots')
+console.log(TheDarkSideOfTheMoon)
+
+/*printout CD {
+  _title: 'TheDarkSideOfTheMoon',
+  _isCheckedOut: true,
+  _artist: 'Pink Floyd',
+  _songs: 'lots',
+  _ratings: [ 9, 8, 9 ] }
+Media { _title: 'Pink Floyd', _isCheckedOut: false }*/
+
+const average_rating_CD = TheDarkSideOfTheMoon.getAverageRating([9,8,9])
+console.log(Math.floor(average_rating_CD))
+
+/*printout 8.666666666666666*/
+
+
+const PinkFloyd = new Media('Pink Floyd',true, [9,5,7])
+console.log(PinkFloyd)
+
+/*printout Media {
+  _title: 'Pink Floyd',
+  _isCheckedOut: false,
+  _ratings: [ 9, 5, 7 ] }*/
+
+const averageMedia = PinkFloyd.getAverageRating([9, 7, 4])
+console.log(Math.floor(averageMedia))
+
+/*printout 6.666666666666667*/
