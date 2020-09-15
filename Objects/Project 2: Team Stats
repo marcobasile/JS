@@ -1,0 +1,60 @@
+const team = {
+
+  // array for players and games 
+
+  _players : [{
+    firstName: 'Pablo',
+    lastName: 'Sanchez',
+    age: 11
+  }],
+  _games : [{
+    opponent: 'Broncos',
+    teamPoints: 42,
+    opponentPoints: 27
+  }],
+
+  // creating getters to return values 
+
+  get players() {
+    return this._players 
+  },
+  get games() {
+    return this._games 
+  },
+
+  // addPlayer adds the input parameters to the players array
+
+  addPlayer(firstName,lastName,age){
+    this.players.push(firstName,lastName,age)
+  },
+
+    // addPlayer adds the input parameters to the games array
+
+  addGame(opponent,teamPoints,opponentPoints){
+    const game = {
+      opponent : opponent,
+      teamPoints : teamPoints,
+      opponentPoints : opponentPoints
+    }
+    this.games.push(opponent,teamPoints,opponentPoints)
+}
+}
+
+// testing addPlayer and addGame
+
+team.addPlayer('Steph','Curry',28)
+team.addPlayer('Lisa','Leslie',44)
+team.addPlayer('Bags','Bunny',76)
+
+const Player = team.players
+console.log(Player)
+
+team.addGame('Lakers', 45, 21)
+team.addGame('Toronto Raptors', 20, 25)
+team.addGame('Miami Heat', 23, 25)
+
+const Game = team.games
+console.log(Game)
+
+
+
