@@ -1,0 +1,112 @@
+/*Parent class School initialized with constructor, getters, setters, and two functions: quickfacts() and pickSubstituteTeacher()*/
+
+class School {
+  constructor(name,level,numberOfStudents){
+    this._name = name;
+    this._level = level;
+    this._numberOfStudents = numberOfStudents;
+    }
+  get name(){
+    return this._name
+  }
+  get level(){
+    switch(level){
+     case 'primary':
+        return this._level = level
+      break;
+     case 'middle':
+        return this._level = level
+      break;
+      case 'high':
+        return this._level = level
+      break;
+     default:
+        return 'insert a valid school level'
+  }
+  }
+  get numberOfStudents(){
+    return this._numberOfStudents
+  }
+  set numberOfStudents(numberOfStudents){
+    this._numberOfStudents = numberOfStudents
+  }
+  quickfacts(name,level,numberOfStudents){
+    console.log(`the ${this._level} school ${this._name} has ${this._numberOfStudents} students `)
+  }
+  pickSubstituteTeacher(){
+    let Teachers = ['Ruth Carman','Gladys Swon','Jennie Crigler']
+    const random_index = Math.floor(Math.random() * Teachers.length)
+    return Teachers[random_index]
+  }
+
+}
+
+/*testing*/
+
+const MIT = new School('MIT','High School',2000)
+console.log(MIT)
+const teacher = MIT.pickSubstituteTeacher()
+console.log(teacher)
+
+/*printing out School { _name: 'MIT', _level: 'High School', _numberOfStudents: 2000 }
+Gladys Swon*/
+
+/*Middle school child class of School, with a new pickupPolicy property*/
+
+class Primary extends School{
+  constructor(name,level,numberOfStudents,pickupPolicy){
+    super(name);
+    this._pickupPolicy = pickupPolicy 
+    this._level = level
+    this._numberOfStudents = numberOfStudents
+  }
+  get pickupPolicy(){
+    return this._pickupPolicy
+  }
+}
+
+/*testing*/
+
+const newPrimary = new Primary('new','primary',1000,'it\'s okay for now')
+console.log(newPrimary)
+
+/*printing out School { _name: 'MIT', _level: 'High School', _numberOfStudents: 2000 }
+Gladys Swon*/
+
+/*Middle school child class of School, with no additional property*/
+
+class Middle extends School{
+  constructor(name,level,numberOfStudents){
+    super(name);
+    this._level = level
+    this._numberOfStudents = numberOfStudents
+  }
+}
+
+/*testing*/
+
+const newMiddle = new Middle('newMiddle','middle',1000,'it\'s okay for now')
+console.log(newMiddle)
+
+/*Middle { _name: 'newMiddle', _level: 'middle', _numberOfStudents: 1000 }*/
+
+/*High school child class of School, with a new property: sportsTeams*/
+
+class High extends School{
+  constructor(name,level,numberOfStudents,sportsTeam){
+    super(name);
+    this._level = level;
+    this._numberOfStudents = numberOfStudents;
+    sportsTeam : [];
+  }
+  get sportsTeam(){
+    return this._sportsTeam
+  }
+}
+
+/*testing*/
+
+const newHigh = new High('newHigh','high',1000,['me','myself','I'])
+console.log(newHigh)
+console.log(newHigh.quickfacts())
+
