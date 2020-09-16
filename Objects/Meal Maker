@@ -1,0 +1,67 @@
+const menu = {
+  courses : {
+    appetizers : [],
+    mains : [],
+    desserts : []
+  },
+  get appetizers(){
+    return this.courses.appetizers;
+   },
+  get mains(){
+    return this.courses.mains;
+   },
+  get desserts(){
+    return this.courses.desserts;
+   },
+  set appetizers(appetizers){
+    this.courses.appetizers = appetizers
+   },
+  set mains(mains){
+    this.courses.mains = mains
+   },
+  set desserts(desserts){
+    this.courses.desserts = desserts
+   },
+  get courses (){
+    return {
+      appetizers: this.appetizers,
+      mains: this.mains,
+      desserts: this.desserts
+    }
+  },
+  addDishToCourse(courseName, dishName, dishPrice){
+    const dish = {
+        name: courseName,
+        price: dishPrice
+     };
+    return this.courses[courseName].push(dish)
+  },
+  getRandomDishFromCourse(courseName){
+    dishes = this.courses[courseName]
+    let randomIndex = Math.floor(Math.random() * dishes.length)
+    return dishes[randomIndex]
+  },
+  generateRandomMeal(){
+    const appetizer = this.getRandomDishFromCourse('appetizers')
+    const main = this.getRandomDishFromCourse('mains')
+    const dessert = this.getRandomDishFromCourse('desserts')
+    const total_price = appetizer.price + main.price + dessert.price
+    return `the total price of your meal is ${total_price}`
+  }
+}
+ 
+menu.addDishToCourse('appetizers', 'polpette', 5)
+menu.addDishToCourse('appetizers', 'arancino', 3)
+menu.addDishToCourse('appetizers', 'ravioli',8)
+
+menu.addDishToCourse('mains', 'pasta',8)
+menu.addDishToCourse('mains', 'lasagne', 10)
+menu.addDishToCourse('mains', 'ravioli', 9)
+
+menu.addDishToCourse('desserts', 'ice cream', 6)
+menu.addDishToCourse('desserts', 'cheesecake', 6)
+menu.addDishToCourse('desserts', 'ravioli', 6)
+
+
+const meal = menu.generateRandomMeal()
+console.log(meal)
